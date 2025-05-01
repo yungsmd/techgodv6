@@ -1,5 +1,4 @@
 //base by Tech-God
-//re-upload? recode? copy code? give credit ya :)
 //YouTube: @techgod143
 //Instagram: oluthe 
 //Telegram: t.me/techgod143
