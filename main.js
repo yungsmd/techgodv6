@@ -32,7 +32,7 @@ const store = makeInMemoryStore({
 })
 
 let phoneNumber = "254768665454"
-let owner = JSON.parse(fs.readFileSync('./database/owner.json'))
+let owner = JSON.smd(fs.readFileSync('./database/owner.json'))
 
 const pairingCode = !!phoneNumber || process.argv.includes("--pairing-code")
 const useMobile = process.argv.includes("--mobile")
@@ -42,13 +42,13 @@ const question = (text) => new Promise((resolve) => rl.question(text, resolve))
          
 async function startXeonBotInc() {
 //------------------------------------------------------
-let { version, isLatest } = await fetchLatestBaileysVersion()
+let { version, isLatest } = await fetchLatestbaileysVersion()
 const {  state, saveCreds } =await useMultiFileAuthState(`./session`)
     const msgRetryCounterCache = new NodeCache() // for retry message, "waiting message"
     const XeonBotInc = makeWASocket({
         logger: pino({ level: 'silent' }),
         printQRInTerminal: !pairingCode, // popping up QR in terminal log
-      browser: Browsers.windows('Firefox'), // for this issues https://github.com/WhiskeySockets/Baileys/issues/328
+      browser: Browsers.windows('Firefox'), // for this issues https://github.com/WhiskeySockets/baileys/issues/328
      auth: {
          creds: state.creds,
          keys: makeCacheableSignalKeyStore(state.keys, Pino({ level: "fatal" }).child({ level: "fatal" })),
@@ -62,7 +62,7 @@ const {  state, saveCreds } =await useMultiFileAuthState(`./session`)
          return msg?.message || ""
       },
       msgRetryCounterCache, // Resolve waiting messages
-      defaultQueryTimeoutMs: undefined, // for this issues https://github.com/WhiskeySockets/Baileys/issues/276
+      defaultQueryTimeoutMs: undefined, // for this issues https://github.com/WhiskeySockets/baileys/issues/276
    })
    
    store.bind(XeonBotInc.ev)
